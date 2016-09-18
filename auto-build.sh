@@ -63,16 +63,17 @@ if [ "$NEW" == '0' ]; then
 fi
 cd $BASE_DIR/$BRANCH/gluon
 
+/bin/chown -R $USER:$USER $BASE_DIR/$BRANCH/
 echo "> clean + update"
 date
 sleep 3
 
 for TARGET in $TARGETS $TARGETSx86
 do
-	make clean GLUON_TARGET=$TARGET
+	/bin/sudo -u $USER /bin/bash make clean GLUON_TARGET=$TARGET
 done
 
-make update
+/bin/sudo -u $USER /bin/bash make update
 
 sleep 3
 
@@ -80,7 +81,7 @@ for TARGET in $TARGETS
 do
 	echo "> make $TARGET"
 	date
-	make -j $THREADS GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE
+	/bin/sudo -u $USER /bin/bash make -j $THREADS GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE
 done
 
 cd ./output/images/sysupgrade
@@ -97,8 +98,8 @@ echo "> make manifest"
 date
 cd $BASE_DIR/$BRANCH/gluon
 
-make manifest GLUON_BRANCH=$BRANCH
-./contrib/sign.sh $SECRETKEY ./output/images/sysupgrade/$BRANCH.manifest
+/bin/sudo -u $USER /bin/bash make manifest GLUON_BRANCH=$BRANCH
+/bin/sudo -u $USER /bin/bash ./contrib/sign.sh $SECRETKEY ./output/images/sysupgrade/$BRANCH.manifest
 
 /bin/rm -rf $HTML_IMAGES_DIR
 
