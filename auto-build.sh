@@ -13,8 +13,6 @@ source $MAIN_DIR/config.sh
 
 cd $MAIN_DIR
 
-echo "S: $SECRETKEY"
-exit 1
 if [ ! -d "$BASE_DIR" ]; then
 	$MAIN_DIR/init_build.sh $BRANCH
 	NEW="1"
