@@ -1,11 +1,51 @@
 #!/bin/bash
 
-source /opt/gluon-update-scripts/config.sh
+##
+## Config
+##
+MAIN_DIR="/opt/gluon-update-scripts"
 
+##
+## Body
+##
+NEW=0
+source $MAIN_DIR/config.sh
 
-cd $BASE_DIR/$BRANCH
+cd $MAIN_DIR
 
-git clone $REPO gluon -b $GLUON_RELISE
-cd ./gluon
-#mkdir ./site
-git clone $SITE_REPO site -b v2016.1.6
+if [ ! -d "$BASE_DIR" ]; then
+	$MAIN_DIR/init_build.sh $BRANCH
+	$NEW=1
+fi
+
+if [ ! -d "$BASE_DIR/$BRANCH" ]; then
+	$MAIN_DIR/init_build.sh $BRANCH
+	$NEW=1
+fi
+
+if [ "$NEW" == '0']; then
+	cd $BASE_DIR/$BRANCH/gluon
+	git pull
+	if [ ! -d "$BASE_DIR/$BRANCH/site" ]; then
+		git clone $SITE_REPO site -b $GLUON_RELISE
+	else
+		cd $BASE_DIR/$BRANCH/site
+		git pull
+	fi
+	
+fi
+
+cd $BASE_DIR/$BRANCH/gluon
+make update
+make clean
+make -j2 GLUON_TARGET=ar71xx-generic GLUON_BRANCH=$BRANCH
+make manifest GLUON_BRANCH=$BRANCH
+./contrib/sign.sh $SECRETKEY ./output/images/sysupgrade/$BRANCH.manifest
+
+rm -rf $HTML_IMAGES_DIR
+rm -rf $HTML_MODULES_DIR
+
+cp -r ./output/images $HTML_MAIN_DIR
+cp -r ./output/modules $HTML_MAIN_DIR
+
+chown -R u1227:u1227 $HTML_MAIN_DIR
