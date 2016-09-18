@@ -8,19 +8,19 @@ MAIN_DIR="/opt/gluon-update-scripts"
 ##
 ## Body
 ##
-NEW=0
+NEW="0"
 source $MAIN_DIR/config.sh
 
 cd $MAIN_DIR
 
 if [ ! -d "$BASE_DIR" ]; then
 	$MAIN_DIR/init_build.sh $BRANCH
-	$NEW=1
+	NEW="1"
 fi
 
 if [ ! -d "$BASE_DIR/$BRANCH" ]; then
 	$MAIN_DIR/init_build.sh $BRANCH
-	$NEW=1
+	NEW="1"
 fi
 
 if [ "$NEW" == '0' ]; then
