@@ -38,25 +38,42 @@ if [ "$NEW" == '0' ]; then
 	git checkout master
 	git pull
 	git checkout $GLUON_RELEASE
+	git pull $REPO $GLUON_RELEASE
 
 	sleep 3
 
-	git pull $REPO $GLUON_RELEASE
 	if [ ! -d "$BASE_DIR/$BRANCH/gluon/site" ]; then
-		git clone $SITE_REPO site -b $GLUON_RELEASE
+		git clone $SITE_REPO site
+		git checkout $GLUON_RELEASE
+		git pull
 	else
 		cd $BASE_DIR/$BRANCH/gluon/site
 		/bin/rm -f ./README.md
+		git checkout master
+		git pull
+		git checkout $GLUON_RELEASE
 		git pull $SITE_REPO $GLUON_RELEASE
 	fi	
 fi
-exit 1
 cd $BASE_DIR/$BRANCH/gluon
+
+sleep 3
+
+for TARGET in $TARGETS $TARGETSx86
+do
+	make clean GLUON_TARGET=$TARGET
+done
+
 make update
-if [ "$NEW" == "0" ]; then
-	make clean
-fi
-make -j$THREADS GLUON_TARGET=$TARGETS GLUON_BRANCH=$BRANCH
+
+sleep 3
+
+for TARGET in $TARGETS
+do
+	date
+	make -j $THREADS GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH
+done
+
 make manifest GLUON_BRANCH=$BRANCH
 ./contrib/sign.sh $SECRETKEY ./output/images/sysupgrade/$BRANCH.manifest
 
