@@ -8,6 +8,10 @@ if [ -z $1 ] or [ $1 != 'stable' ] or [ $1 != 'beta' ] or [ $1 != 'experimental'
 	exit 1
 fi
 
+if [ ! -d $BASE_DIR ]
+	mkdir $BASE_DIR
+fi
+
 if [ -d $BASE_DIR/$1 ]
 	cd $BASE_DIR/$1
 else
