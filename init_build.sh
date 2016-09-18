@@ -3,10 +3,11 @@
 
 source /opt/gluon-update-scripts/config.sh
 
-if [ -z "$1" ] or [ "$1" != 'stable' ] or [ "$1" != 'beta' ] or [ "$1" != 'experimental' ]; then
+if [[ -z "$1" || "$1" != 'stable' || "$1" != 'beta' || "$1" != 'experimental' ]]; then
 	print 'stable, beta or experimental'
 	exit 1
 fi
+
 
 if [ ! -d "$BASE_DIR" ]; then
 	/bin/mkdir $BASE_DIR
