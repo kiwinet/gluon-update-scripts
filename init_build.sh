@@ -9,11 +9,11 @@ if [ -z "$1" ]; then
 fi
 
 if [ ! -d "$BASE_DIR" ]; then
-	/bin/mkdir $BASE_DIR
+	/bin/mkdir -p $BASE_DIR
 fi
 
 if [ ! -d "$BASE_DIR/$1" ]; then
-	/bin/mkdir $BASE_DIR/$1
+	/bin/mkdir -p $BASE_DIR/$1
 fi
 
 cd $BASE_DIR/$1
@@ -21,5 +21,5 @@ git clone $REPO gluon -b $GLUON_RELEASE
 
 cd ./gluon
 
-rm -rf ./site
+/bin/rm -rf ./site
 git clone $SITE_REPO site -b $GLUON_RELEASE

@@ -30,7 +30,7 @@ if [ "$NEW" == '0' ]; then
 		git clone $SITE_REPO site -b $GLUON_RELEASE
 	else
 		cd $BASE_DIR/$BRANCH/gluon/site
-		rm -f ./README.md
+		/bin/rm -f ./README.md
 		git pull $SITE_REPO $GLUON_RELEASE
 	fi	
 fi
@@ -44,10 +44,12 @@ make -j2 GLUON_TARGET=ar71xx-generic GLUON_BRANCH=$BRANCH
 make manifest GLUON_BRANCH=$BRANCH
 ./contrib/sign.sh $SECRETKEY ./output/images/sysupgrade/$BRANCH.manifest
 
-rm -rf $HTML_IMAGES_DIR
-rm -rf $HTML_MODULES_DIR
+/bin/rm -rf $HTML_IMAGES_DIR
 
-cp -r ./output/images $HTML_MAIN_DIR
-cp -r ./output/modules $HTML_MAIN_DIR
+/bin/mkdir -p $HTML_IMAGES_DIR
+/bin/cp -r ./output/images $HTML_IMAGES_DIR
 
-chown -R $USER:$USER $HTML_MAIN_DIR
+/bin/mkdir -p $HTML_MODULES_DIR
+/bin/cp -r ./output/modules $HTML_MODULES_DIR
+
+/bin/chown -R $USER:$USER $HTML_IMAGES_DIR
