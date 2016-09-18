@@ -10,6 +10,9 @@ MAIN_DIR="/opt/gluon-update-scripts"
 ##
 {
 NEW="0"
+RELEASE_TAG="$GLUON_RELEASE.${BRANCH:0:1}.$NUM"
+MY_RELEASE="${GLUON_RELEASE:1}-$BRANCH$NUM"
+
 
 source $MAIN_DIR/config.sh
 
@@ -26,6 +29,10 @@ fi
 
 # Show summery
 date
+
+echo $RELEASE_TAG
+echo $GLUON_RELEASE
+echo $MY_RELEASE
 
 echo "Targets: $TARGETS"
 echo "Futro ??? Targets: $TARGETSx86"
@@ -68,7 +75,7 @@ sleep 3
 
 for TARGET in $TARGETS
 do
-	make -j $THREADS GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH
+	make -j $THREADS GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE
 done
 
 cd ./output/images/sysupgrade
@@ -94,4 +101,4 @@ make manifest GLUON_BRANCH=$BRANCH
 
 /bin/chown -R $USER:$USER $HTML_IMAGES_DIR
 
-} > >(tee -a /var/log/firmware-build/$BRANCH.log) 2> >(tee -a /var/log/firmware-build/$BRANCH.error.log | tee -a /var/log/firmware-build/$BRANCH.log >&2)
+} > >(tee -a /var/log/firmware-build/$MY_RELEASE.log) 2> >(tee -a /var/log/firmware-build/$MY_RELEASE.error.log | tee -a /var/log/firmware-build/$MY_RELEASE.log >&2)
