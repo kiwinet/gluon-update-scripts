@@ -48,8 +48,6 @@ make manifest GLUON_BRANCH=$BRANCH
 
 /bin/mkdir -p $HTML_IMAGES_DIR
 /bin/cp -r ./output/images $HTML_IMAGES_DIR
-
-/bin/mkdir -p $HTML_MODULES_DIR
-/bin/cp -r ./output/modules $HTML_MODULES_DIR
+/bin/cp -r ./output/modules $HTML_IMAGES_DIR
 
 /bin/chown -R $USER:$USER $HTML_IMAGES_DIR
