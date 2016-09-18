@@ -17,15 +17,9 @@ if [ ! -d "$BASE_DIR/$1" ]; then
 fi
 
 cd $BASE_DIR/$1
-git clone $REPO gluon
-git checkout $GLUON_RELEASE
-git pull
-#git clone $REPO gluon -b $GLUON_RELEASE
+git clone $REPO gluon -b $GLUON_RELEASE
 
 cd ./gluon
 
 /bin/rm -rf ./site
-git clone $SITE_REPO site
-git checkout $GLUON_RELEASE
-git pull
-#git clone $SITE_REPO site -b $GLUON_RELEASE
+git clone $SITE_REPO site -b $GLUON_RELEASE
