@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BASE_DIR="/otp/gluon-update"
+BASE_DIR="/opt/gluon-update"
 BRANCH="stable"
 GLUON_RELISE="v2016.1.6"
 REPO="https://github.com/freifunk-gluon/gluon.git"
