@@ -36,7 +36,9 @@ fi
 
 cd $BASE_DIR/$BRANCH/gluon
 make update
-make clean
+if [ "$NEW" == "0" ]; then
+	make clean
+fi
 make -j2 GLUON_TARGET=ar71xx-generic GLUON_BRANCH=$BRANCH
 make manifest GLUON_BRANCH=$BRANCH
 ./contrib/sign.sh $SECRETKEY ./output/images/sysupgrade/$BRANCH.manifest
