@@ -81,7 +81,7 @@ for TARGET in $TARGETS
 do
 	echo "> make $TARGET"
 	date
-	/usr/bin/sudo -u $USER make -j $THREADS GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE
+	/usr/bin/sudo -u $USER make -j $THREADS GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE $1
 done
 
 if [ -d "./output/images/sysupgrade" ]; then
