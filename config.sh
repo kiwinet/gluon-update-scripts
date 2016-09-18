@@ -13,7 +13,7 @@ USER="u1227"
 ## PubKey
 ##
 
-SECRETKEY=`cat secret`
+SECRETKEY=`/bin/cat secret`
 
 ##
 ## REPO
