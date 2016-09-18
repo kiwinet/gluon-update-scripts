@@ -1,9 +1,12 @@
 #!/bin/sh
 ##
 
-BASE_DIR = '/otp/gluon-update'
+. /opt/gluon-update-scripts/config.ini
 
-cd /otp/gluon-update/stable
-git clone https://github.com/freifunk-gluon/gluon.git gluon -b v2016.1.6
+
+cd $BASE_DIR/$BRANCH
+
+git clone $REPO gluon -b $GLUON_RELISE
 cd ./gluon
-mkdir 
+#mkdir ./site
+git clone $SITE_REPO site -b v2016.1.6
