@@ -23,7 +23,7 @@ if [ ! -d "$BASE_DIR/$BRANCH" ]; then
 	$NEW=1
 fi
 
-if [ "$NEW" == '0']; then
+if [ "$NEW" == '0' ]; then
 	cd $BASE_DIR/$BRANCH/gluon
 	git pull
 	if [ ! -d "$BASE_DIR/$BRANCH/site" ]; then
