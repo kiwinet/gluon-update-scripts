@@ -13,7 +13,7 @@ USER="u1227"
 ## PubKey
 ##
 
-SECRETKEY="e8c1efbc3bd8e91b33d0d8626125f6ea0d5639c7d0b00281e0e31f32b322be49"
+SECRETKEY=`cat secret`
 
 ##
 ## REPO
