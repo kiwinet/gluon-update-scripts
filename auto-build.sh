@@ -10,11 +10,11 @@ MAIN_DIR="/opt/gluon-update-scripts"
 ##
 {
 NEW="0"
+source $MAIN_DIR/config.sh
+
 RELEASE_TAG="$GLUON_RELEASE.${BRANCH:0:1}.$NUM"
 MY_RELEASE="${GLUON_RELEASE:1}-$BRANCH$NUM"
 
-
-source $MAIN_DIR/config.sh
 
 cd $MAIN_DIR
 if [ ! -d "$BASE_DIR" ]; then
