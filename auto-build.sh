@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /opt/gluon-update-scripts/config.ini
+source /opt/gluon-update-scripts/config.sh
 
 
 cd $BASE_DIR/$BRANCH
