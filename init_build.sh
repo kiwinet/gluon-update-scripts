@@ -1,7 +1,7 @@
 #!/bin/bash
 ##
 
-. /opt/gluon-update-scripts/config.ini
+source /opt/gluon-update-scripts/config.ini
 
 if [ -z $1 ] or [ $1 != 'stable' ] or [ $1 != 'beta' ] or [ $1 != 'experimental' ]
 	print 'stable, beta or experimental'
