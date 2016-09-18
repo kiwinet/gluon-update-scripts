@@ -70,10 +70,10 @@ sleep 3
 
 for TARGET in $TARGETS $TARGETSx86
 do
-	/bin/sudo -u $USER /bin/bash make clean GLUON_TARGET=$TARGET
+	/usr/bin/sudo -u $USER /bin/bash make clean GLUON_TARGET=$TARGET
 done
 
-/bin/sudo -u $USER /bin/bash make update
+/usr/bin/sudo -u $USER /bin/bash make update
 
 sleep 3
 
@@ -81,7 +81,7 @@ for TARGET in $TARGETS
 do
 	echo "> make $TARGET"
 	date
-	/bin/sudo -u $USER /bin/bash make -j $THREADS GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE
+	/usr/bin/sudo -u $USER /bin/bash make -j $THREADS GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE
 done
 
 if [ -d "./output/images/sysupgrade" ]; then
@@ -99,8 +99,8 @@ if [ -d "./output/images/sysupgrade" ]; then
 	date
 	cd $BASE_DIR/$BRANCH/gluon
 
-	/bin/sudo -u $USER /bin/bash make manifest GLUON_BRANCH=$BRANCH
-	/bin/sudo -u $USER /bin/bash ./contrib/sign.sh $SECRETKEY ./output/images/sysupgrade/$BRANCH.manifest
+	/usr/bin/sudo -u $USER /bin/bash make manifest GLUON_BRANCH=$BRANCH
+	/usr/bin/sudo -u $USER /bin/bash ./contrib/sign.sh $SECRETKEY ./output/images/sysupgrade/$BRANCH.manifest
 
 	/bin/rm -rf $HTML_IMAGES_DIR
 
