@@ -37,7 +37,7 @@ echo $MY_RELEASE
 echo "Targets: $TARGETS"
 echo "Futro ??? Targets: $TARGETSx86"
 echo "Using $THREADS Cores"
-exit 1
+
 sleep 5 
 
 if [ "$NEW" == '0' ]; then
@@ -60,7 +60,8 @@ if [ "$NEW" == '0' ]; then
 fi
 cd $BASE_DIR/$BRANCH/gluon
 
-echo ""
+echo "> clean + update"
+date
 sleep 3
 
 for TARGET in $TARGETS $TARGETSx86
@@ -70,11 +71,12 @@ done
 
 make update
 
-echo ""
 sleep 3
 
 for TARGET in $TARGETS
 do
+	echo "> make $TARGET"
+	date
 	make -j $THREADS GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE
 done
 
@@ -88,6 +90,8 @@ rm -f md5sum
 rm -f *.manifest
 md5sum * >> md5sums
 
+echo "> make manifest"
+date
 cd $BASE_DIR/$BRANCH/gluon
 
 make manifest GLUON_BRANCH=$BRANCH
