@@ -84,29 +84,31 @@ do
 	/bin/sudo -u $USER /bin/bash make -j $THREADS GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE
 done
 
-cd ./output/images/sysupgrade
-rm -f md5sum
-rm -f *.manifest
-md5sum * >> md5sums
+if [ -d "./output/images/sysupgrade" ]; then
+	cd ./output/images/sysupgrade
+	rm -f md5sum
+	rm -f *.manifest
+	md5sum * >> md5sums
 
-cd ../factory
-rm -f md5sum
-rm -f *.manifest
-md5sum * >> md5sums
+	cd ../factory
+	rm -f md5sum
+	rm -f *.manifest
+	md5sum * >> md5sums
 
-echo "> make manifest"
-date
-cd $BASE_DIR/$BRANCH/gluon
+	echo "> make manifest"
+	date
+	cd $BASE_DIR/$BRANCH/gluon
 
-/bin/sudo -u $USER /bin/bash make manifest GLUON_BRANCH=$BRANCH
-/bin/sudo -u $USER /bin/bash ./contrib/sign.sh $SECRETKEY ./output/images/sysupgrade/$BRANCH.manifest
+	/bin/sudo -u $USER /bin/bash make manifest GLUON_BRANCH=$BRANCH
+	/bin/sudo -u $USER /bin/bash ./contrib/sign.sh $SECRETKEY ./output/images/sysupgrade/$BRANCH.manifest
 
-/bin/rm -rf $HTML_IMAGES_DIR
+	/bin/rm -rf $HTML_IMAGES_DIR
 
-/bin/mkdir -p $HTML_IMAGES_DIR
-/bin/cp -r ./output/images $HTML_IMAGES_DIR
-/bin/cp -r ./output/modules $HTML_IMAGES_DIR
+	/bin/mkdir -p $HTML_IMAGES_DIR
+	/bin/cp -r ./output/images $HTML_IMAGES_DIR
+	/bin/cp -r ./output/modules $HTML_IMAGES_DIR
 
-/bin/chown -R $USER:$USER $HTML_IMAGES_DIR
+	/bin/chown -R $USER:$USER $HTML_IMAGES_DIR
 
+fi
 } > >(tee -a /var/log/firmware-build/$MY_RELEASE.log) 2> >(tee -a /var/log/firmware-build/$MY_RELEASE.error.log | tee -a /var/log/firmware-build/$MY_RELEASE.log >&2)
