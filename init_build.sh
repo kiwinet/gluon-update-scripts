@@ -20,4 +20,6 @@ cd $BASE_DIR/$1
 git clone $REPO gluon -b $GLUON_RELEASE
 
 cd ./gluon
+
+rm -rf ./site
 git clone $SITE_REPO site -b $GLUON_RELEASE
