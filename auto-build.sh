@@ -27,7 +27,7 @@ if [ "$NEW" == '0' ]; then
 	cd $BASE_DIR/$BRANCH/gluon
 	git pull
 	if [ ! -d "$BASE_DIR/$BRANCH/site" ]; then
-		git clone $SITE_REPO site -b $GLUON_RELISE
+		git clone $SITE_REPO site -b $GLUON_RELEASE
 	else
 		cd $BASE_DIR/$BRANCH/site
 		git pull
