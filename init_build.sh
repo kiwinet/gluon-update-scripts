@@ -3,8 +3,7 @@
 
 source /opt/gluon-update-scripts/config.sh
 
-if [ -z "$1" ]
- then
+if [ -z "$1" ]; then
 	print 'stable, beta or experimental 1'
 	exit 1
 fi
