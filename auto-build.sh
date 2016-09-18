@@ -35,8 +35,6 @@ sleep 5
 
 if [ "$NEW" == '0' ]; then
 	cd $BASE_DIR/$BRANCH/gluon
-	git checkout master
-	git pull
 	git checkout $GLUON_RELEASE
 	git pull $REPO $GLUON_RELEASE
 
@@ -49,14 +47,12 @@ if [ "$NEW" == '0' ]; then
 	else
 		cd $BASE_DIR/$BRANCH/gluon/site
 		/bin/rm -f ./README.md
-		git checkout master
-		git pull
 		git checkout $GLUON_RELEASE
 		git pull $SITE_REPO $GLUON_RELEASE
 	fi	
 fi
 cd $BASE_DIR/$BRANCH/gluon
-
+exit 1
 sleep 3
 
 for TARGET in $TARGETS $TARGETSx86
