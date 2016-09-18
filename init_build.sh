@@ -3,11 +3,12 @@
 
 source /opt/gluon-update-scripts/config.sh
 
-if [ -z "$1" ]; then
-	print 'stable, beta or experimental'
+if [ -z "$1" ]
+ then
+	print 'stable, beta or experimental 1'
 	exit 1
 elif [[ "$1" != 'stable' || "$1" != 'beta' || "$1" != 'experimental' ]]; then
-	print 'stable, beta or experimental'
+	print 'stable, beta or experimental 2'
 	exit 1
 fi
 
