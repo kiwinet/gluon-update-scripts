@@ -46,7 +46,7 @@ if [ "$NEW" == '0' ]; then
 		git pull
 	else
 		cd $BASE_DIR/$BRANCH/gluon/site
-		/bin/rm -f ./README.md
+		#/bin/rm -f ./README.md
 		git checkout $GLUON_RELEASE
 		git pull $SITE_REPO $GLUON_RELEASE
 	fi	
