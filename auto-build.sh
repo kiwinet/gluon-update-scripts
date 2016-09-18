@@ -23,8 +23,24 @@ if [ ! -d "$BASE_DIR/$BRANCH" ]; then
 	NEW="1"
 fi
 
+
+# Show summery
+date
+
+echo "Targets: $TARGETS"
+echo "Futro ??? Targets: $TARGETSx86"
+echo "Using $THREADS Cores"
+
+sleep 5 
+
 if [ "$NEW" == '0' ]; then
 	cd $BASE_DIR/$BRANCH/gluon
+	git checkout master
+	git pull
+	git checkout $GLUON_RELEASE
+
+	sleep 3
+
 	git pull $REPO $GLUON_RELEASE
 	if [ ! -d "$BASE_DIR/$BRANCH/gluon/site" ]; then
 		git clone $SITE_REPO site -b $GLUON_RELEASE
@@ -34,13 +50,13 @@ if [ "$NEW" == '0' ]; then
 		git pull $SITE_REPO $GLUON_RELEASE
 	fi	
 fi
-
+exit 1
 cd $BASE_DIR/$BRANCH/gluon
 make update
 if [ "$NEW" == "0" ]; then
 	make clean
 fi
-make -j2 GLUON_TARGET=ar71xx-generic GLUON_BRANCH=$BRANCH
+make -j$THREADS GLUON_TARGET=$TARGETS GLUON_BRANCH=$BRANCH
 make manifest GLUON_BRANCH=$BRANCH
 ./contrib/sign.sh $SECRETKEY ./output/images/sysupgrade/$BRANCH.manifest
 
