@@ -14,13 +14,12 @@ if [ ! -d "$BASE_DIR" ]; then
 fi
 
 if [ ! -d "$BASE_DIR/$1" ]; then
-	cd $BASE_DIR/$1
-else
 	/bin/mkdir $BASE_DIR/$1
 fi
 
-exit 1
+cd $BASE_DIR/$1
 git clone $REPO gluon -b $GLUON_RELISE
+
 cd ./gluon
-git clone $SITE_REPO site -b v2016.1.6
+git clone $SITE_REPO site -b $GLUON_RELISE
 
