@@ -37,7 +37,7 @@ echo $MY_RELEASE
 echo "Targets: $TARGETS"
 echo "Futro ??? Targets: $TARGETSx86"
 echo "Using $THREADS Cores"
-
+exit 1
 sleep 5 
 
 if [ "$NEW" == '0' ]; then
