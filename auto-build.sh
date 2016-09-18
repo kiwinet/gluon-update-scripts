@@ -8,11 +8,12 @@ MAIN_DIR="/opt/gluon-update-scripts"
 ##
 ## Body
 ##
+{
 NEW="0"
+
 source $MAIN_DIR/config.sh
 
 cd $MAIN_DIR
-
 if [ ! -d "$BASE_DIR" ]; then
 	$MAIN_DIR/init_build.sh $BRANCH
 	NEW="1"
@@ -22,7 +23,6 @@ if [ ! -d "$BASE_DIR/$BRANCH" ]; then
 	$MAIN_DIR/init_build.sh $BRANCH
 	NEW="1"
 fi
-
 
 # Show summery
 date
@@ -52,7 +52,8 @@ if [ "$NEW" == '0' ]; then
 	fi	
 fi
 cd $BASE_DIR/$BRANCH/gluon
-exit 1
+
+echo ""
 sleep 3
 
 for TARGET in $TARGETS $TARGETSx86
@@ -62,13 +63,25 @@ done
 
 make update
 
+echo ""
 sleep 3
 
 for TARGET in $TARGETS
 do
-	date
 	make -j $THREADS GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH
 done
+
+cd ./output/images/sysupgrade
+rm -f md5sum
+rm -f *.manifest
+md5sum * >> md5sums
+
+cd ../factory
+rm -f md5sum
+rm -f *.manifest
+md5sum * >> md5sums
+
+cd $BASE_DIR/$BRANCH/gluon
 
 make manifest GLUON_BRANCH=$BRANCH
 ./contrib/sign.sh $SECRETKEY ./output/images/sysupgrade/$BRANCH.manifest
@@ -80,3 +93,5 @@ make manifest GLUON_BRANCH=$BRANCH
 /bin/cp -r ./output/modules $HTML_IMAGES_DIR
 
 /bin/chown -R $USER:$USER $HTML_IMAGES_DIR
+
+} > >(tee -a /var/log/firmware-build/$BRANCH.log) 2> >(tee -a /var/log/firmware-build/$BRANCH.error.log | tee -a /var/log/firmware-build/$BRANCH.log >&2)
