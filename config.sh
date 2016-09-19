@@ -7,7 +7,7 @@
 BRANCH_S="stable"
 BRANCH_E="experimental"
 GLUON_RELEASE="v2016.1.6"
-GLUON_SITE_RELEASE="master"
+GLUON_SITE_RELEASE="v2016.1.6"
 SITE="ksia"
 USER="u1227"
 
