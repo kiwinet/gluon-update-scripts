@@ -11,7 +11,7 @@ MAIN_DIR="/opt/gluon-update-scripts"
 NEW="0"
 source $MAIN_DIR/config.sh
 
-BRANCH=$BRANCH_E
+BRANCH=$BRANCH_S
 
 T="$(date +"%Y%m%d_%H:%M")"
 RELEASE_TAG="$GLUON_RELEASE.${BRANCH:0:1}.$T"
