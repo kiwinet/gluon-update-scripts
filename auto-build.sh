@@ -61,6 +61,8 @@ if [ "$NEW" == '0' ]; then
 	## clone Site config
 	##
 	git clone $SITE_REPO site -b $GLUON_SITE_RELEASE
+
+	cd $BASE_DIR/$BRANCH/gluon/site
 	git checkout $GLUON_SITE_RELEASE
 fi
 cd $BASE_DIR/$BRANCH/gluon

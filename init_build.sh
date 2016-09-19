@@ -21,13 +21,15 @@ cd $BASE_DIR/$1
 ## clone GLUON
 ##
 git clone $REPO gluon -b $GLUON_RELEASE
-git checkout $GLUON_RELEASE
 
 cd $BASE_DIR/$1/gluon
+git checkout $GLUON_RELEASE
 
 /bin/rm -rf $BASE_DIR/$1/gluon/site
 ##
 ## clone SITE config
 ##
 git clone $SITE_REPO site -b $GLUON_SITE_RELEASE
+
+cd $BASE_DIR/$1/gluon/site
 git checkout $GLUON_SITE_RELEASE
