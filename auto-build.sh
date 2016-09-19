@@ -30,6 +30,11 @@ if [ ! -d "$BASE_DIR/$BRANCH" ]; then
 	NEW="1"
 fi
 
+if [ ! -d "$BASE_DIR/$BRANCH/gluon" ]; then
+	$MAIN_DIR/init_build.sh $BRANCH
+	NEW="1"
+fi
+
 # Show summery
 date
 
@@ -43,32 +48,26 @@ echo "Using $THREADS Cores"
 
 sleep 5 
 
+cd $BASE_DIR/$BRANCH/gluon
 if [ "$NEW" == '0' ]; then
-	cd $BASE_DIR/$BRANCH/gluon
+	##
+	## pull GLUON release
+	##
 	git checkout $GLUON_RELEASE
 	git pull $REPO $GLUON_RELEASE
 
-	sleep 3
-
-	if [ ! -d "$BASE_DIR/$BRANCH/gluon/site" ]; then
-		git clone $SITE_REPO site
-		git checkout master
-		#$GLUON_RELEASE
-		git pull
-	else
-		cd $BASE_DIR/$BRANCH/gluon/site
-		#/bin/rm -f ./README.md
-		git checkout master
-		git pull $SITE_REPO master
-		#$GLUON_RELEASE
-	fi	
+	/bin/rm -rf $BASE_DIR/$BRANCH/gluon/site
+	##
+	## clone Site config
+	##
+	git clone $SITE_REPO site -b $GLUON_SITE_RELEASE
+	git checkout $GLUON_SITE_RELEASE
 fi
 cd $BASE_DIR/$BRANCH/gluon
 
 /bin/chown -R $USER:$USER $BASE_DIR/$BRANCH/
 echo "> clean + update"
 date
-sleep 3
 
 for TARGET in $TARGETS $TARGETSx86
 do
@@ -86,16 +85,20 @@ do
 	/usr/bin/sudo -u $USER make -j $THREADS GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE $1
 done
 
-if [ -d "./output/images/sysupgrade" ]; then
-	cd $BASE_DIR/$BRANCH/gluon/output/images/sysupgrade
-	rm -f md5sum
-	rm -f *.manifest
-	md5sum * >> md5sums
+if [ -d "$BASE_DIR/$BRANCH/gluon/output/images" ]; then
+	if [ -d "$BASE_DIR/$BRANCH/gluon/output/images/sysupgrade" ]; then
+		cd $BASE_DIR/$BRANCH/gluon/output/images/sysupgrade
+		rm -f md5sum
+		rm -f *.manifest
+		md5sum * >> md5sums
+	fi
 
-	cd $BASE_DIR/$BRANCH/gluon/output/images/factory
-	rm -f md5sum
-	rm -f *.manifest
-	md5sum * >> md5sums
+	if [ -d "$BASE_DIR/$BRANCH/gluon/output/images/factory" ]; then
+		cd $BASE_DIR/$BRANCH/gluon/output/images/factory
+		rm -f md5sum
+		rm -f *.manifest
+		md5sum * >> md5sums
+	fi
 
 	echo "> make manifest"
 	date
@@ -104,13 +107,16 @@ if [ -d "./output/images/sysupgrade" ]; then
 	/usr/bin/sudo -u $USER make manifest GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE
 	/usr/bin/sudo -u $USER $BASE_DIR/$BRANCH/gluon/contrib/sign.sh $MAIN_DIR/secret $BASE_DIR/$BRANCH/gluon/output/images/sysupgrade/$BRANCH.manifest
 
-	/bin/rm -rf $HTML_IMAGES_DIR
+	if [ -f "$BASE_DIR/$BRANCH/gluon/output/images/sysupgrade/$BRANCH.manifest" ]; then
 
-	/bin/mkdir -p $HTML_IMAGES_DIR
-	/bin/cp -r $BASE_DIR/$BRANCH/gluon/output/images $HTML_IMAGES_DIR
-	/bin/cp -r $BASE_DIR/$BRANCH/gluon/output/modules $HTML_IMAGES_DIR
+		/bin/rm -rf $HTML_IMAGES_DIR
 
-	/bin/chown -R $USER:$USER $HTML_IMAGES_DIR
+		/bin/mkdir -p $HTML_IMAGES_DIR
+		/bin/cp -r $BASE_DIR/$BRANCH/gluon/output/images $HTML_IMAGES_DIR
+		/bin/cp -r $BASE_DIR/$BRANCH/gluon/output/modules $HTML_IMAGES_DIR
+
+		/bin/chown -R $USER:$USER $HTML_IMAGES_DIR
+	fi
 
 fi
 } > >(tee -a /var/log/firmware-build/$MY_RELEASE.log) 2> >(tee -a /var/log/firmware-build/$MY_RELEASE.error.log | tee -a /var/log/firmware-build/$MY_RELEASE.log >&2)
