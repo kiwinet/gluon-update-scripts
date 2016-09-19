@@ -13,7 +13,7 @@ source $MAIN_DIR/config.sh
 
 BRANCH=$BRANCH_S
 
-T="$(date +"%Y%m%d%H:%M")"
+T="$(date +"%Y%m%d%H%M")"
 RELEASE_TAG="$GLUON_RELEASE.${BRANCH:0:1}.$T"
 MY_RELEASE="${GLUON_RELEASE:1}-$BRANCH-$T"
 
