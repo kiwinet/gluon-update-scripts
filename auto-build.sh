@@ -110,7 +110,7 @@ if [ -d "$BASE_DIR/$BRANCH/gluon/output/images" ]; then
 
 	cd $MAIN_DIR
 
-	/usr/bin/sudo -u $USER $BASE_DIR/$BRANCH/gluon/contrib/sign.sh $MAIN_DIR/secret $BASE_DIR/$BRANCH/gluon/output/images/sysupgrade/$BRANCH.manifest
+	/usr/bin/sudo -u $MAIN_DIR/sign.sh $MAIN_DIR/secret $BASE_DIR/$BRANCH/gluon/output/images/sysupgrade/$BRANCH.manifest
 
 	cd $BASE_DIR/$BRANCH/gluon
 

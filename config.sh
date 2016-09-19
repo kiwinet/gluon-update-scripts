@@ -17,12 +17,6 @@ TARGETSx86="x86-generic x86-64"
 THREADS="4"
 
 ##
-## PubKey
-##
-
-SECRETKEY=`/bin/cat secret`
-
-##
 ## REPO
 ##
 
