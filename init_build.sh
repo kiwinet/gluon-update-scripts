@@ -22,4 +22,4 @@ git clone $REPO gluon -b $GLUON_RELEASE
 cd ./gluon
 
 /bin/rm -rf ./site
-git clone $SITE_REPO site -b $GLUON_RELEASE
+git clone $SITE_REPO site -b master

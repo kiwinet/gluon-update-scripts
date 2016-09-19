@@ -52,14 +52,14 @@ if [ "$NEW" == '0' ]; then
 
 	if [ ! -d "$BASE_DIR/$BRANCH/gluon/site" ]; then
 		git clone $SITE_REPO site
-		git checkout v2016.1.5
+		git checkout master
 		#$GLUON_RELEASE
 		git pull
 	else
 		cd $BASE_DIR/$BRANCH/gluon/site
 		#/bin/rm -f ./README.md
-		git checkout $GLUON_RELEASE
-		git pull $SITE_REPO v2016.1.5
+		git checkout master
+		git pull $SITE_REPO master
 		#$GLUON_RELEASE
 	fi	
 fi
