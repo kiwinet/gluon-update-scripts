@@ -100,7 +100,7 @@ if [ -d "./output/images/sysupgrade" ]; then
 	cd $BASE_DIR/$BRANCH/gluon
 
 	/usr/bin/sudo -u $USER make manifest GLUON_BRANCH=$BRANCH
-	/usr/bin/sudo -u $USER ./contrib/sign.sh $SECRETKEY ./output/images/sysupgrade/$BRANCH.manifest
+	/usr/bin/sudo -u $USER ./contrib/sign.sh $MAIN_DIR/secret ./output/images/sysupgrade/$BRANCH.manifest
 
 	/bin/rm -rf $HTML_IMAGES_DIR
 
