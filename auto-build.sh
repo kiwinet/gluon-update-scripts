@@ -71,12 +71,14 @@ cd $BASE_DIR/$BRANCH/gluon
 echo "> clean + update"
 date
 
-for TARGET in $TARGETS $TARGETSx86
+for TARGET in $TARGETS #$TARGETSx86
 do
-	/usr/bin/sudo -u $USER make clean GLUON_TARGET=$TARGET
+	#/usr/bin/sudo -u $USER 
+	#make clean GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE -j $THREADS
 done
 
-/usr/bin/sudo -u $USER make update
+#/usr/bin/sudo -u $USER 
+make update GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE -j $THREADS
 
 sleep 3
 
@@ -84,7 +86,8 @@ for TARGET in $TARGETS
 do
 	echo "> make $TARGET"
 	date
-	/usr/bin/sudo -u $USER make GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE -j $THREADS $1
+	#/usr/bin/sudo -u $USER 
+	make GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE -j $THREADS $1
 done
 
 if [ -d "$BASE_DIR/$BRANCH/gluon/output/images" ]; then
@@ -106,11 +109,13 @@ if [ -d "$BASE_DIR/$BRANCH/gluon/output/images" ]; then
 	date
 	cd $BASE_DIR/$BRANCH/gluon
 
-	/usr/bin/sudo -u $USER make manifest GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE
+	#/usr/bin/sudo -u $USER 
+	make manifest GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE
 
 	cd $MAIN_DIR
 
-	/usr/bin/sudo -u $USER $MAIN_DIR/sign.sh $MAIN_DIR/secret $BASE_DIR/$BRANCH/gluon/output/images/sysupgrade/$BRANCH.manifest
+	#/usr/bin/sudo -u $USER 
+	$MAIN_DIR/sign.sh $MAIN_DIR/secret $BASE_DIR/$BRANCH/gluon/output/images/sysupgrade/$BRANCH.manifest
 
 	cd $BASE_DIR/$BRANCH/gluon
 
