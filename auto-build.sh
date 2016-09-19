@@ -67,7 +67,7 @@ if [ "$NEW" == '0' ]; then
 fi
 cd $BASE_DIR/$BRANCH/gluon
 
-/bin/chown -R $USER:$USER $BASE_DIR/$BRANCH/
+/bin/chown -R $USER:$USER $BASE_DIR
 echo "> clean + update"
 date
 
