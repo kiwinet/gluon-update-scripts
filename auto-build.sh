@@ -73,7 +73,7 @@ date
 
 for TARGET in $TARGETS #$TARGETSx86
 do
-	#/usr/bin/sudo -u $USER 
+	/usr/bin/sudo -u $USER 
 	#make clean GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE -j $THREADS
 done
 
