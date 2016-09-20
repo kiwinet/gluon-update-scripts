@@ -93,14 +93,14 @@ done
 if [ -d "$BASE_DIR/$BRANCH/gluon/output/images" ]; then
 	if [ -d "$BASE_DIR/$BRANCH/gluon/output/images/sysupgrade" ]; then
 		cd $BASE_DIR/$BRANCH/gluon/output/images/sysupgrade
-		rm -f md5sum
+		rm -f md5sums
 		rm -f *.manifest
 		md5sum * >> md5sums
 	fi
 
 	if [ -d "$BASE_DIR/$BRANCH/gluon/output/images/factory" ]; then
 		cd $BASE_DIR/$BRANCH/gluon/output/images/factory
-		rm -f md5sum
+		rm -f md5sums
 		rm -f *.manifest
 		md5sum * >> md5sums
 	fi
@@ -119,18 +119,27 @@ if [ -d "$BASE_DIR/$BRANCH/gluon/output/images" ]; then
 
 	cd $BASE_DIR/$BRANCH/gluon
 
-	if [ -f "$BASE_DIR/$BRANCH/gluon/output/images/sysupgrade/$BRANCH.manifest" ]; then
+	if [ -a "$BASE_DIR/$BRANCH/gluon/output/images/sysupgrade/$BRANCH.manifest" ]; then
 
 		/bin/mkdir -p $HTML_IMAGES_DIR/archive/$BRANCH/
 
+		if [ -a "$HTML_IMAGES_DIR/$BRANCH/archive/images/sysupgrade/md5sums" ]; then
+			/bin/more $HTML_IMAGES_DIR/$BRANCH/images/sysupgrade/md5sums >> $HTML_IMAGES_DIR/$BRANCH/archive/images/sysupgrade/md5sums
+			/bin/rm -f $HTML_IMAGES_DIR/$BRANCH/images/sysupgrade/md5sums
+		fi
+		if [ -a "$HTML_IMAGES_DIR/$BRANCH/archive/images/factory/md5sums" ]; then
+			/bin/more $HTML_IMAGES_DIR/$BRANCH/images/factory/md5sums >> $HTML_IMAGES_DIR/$BRANCH/archive/images/factory/md5sums
+			/bin/rm -f $HTML_IMAGES_DIR/$BRANCH/images/factory/md5sums
+		fi
+
+		/bin/rm -f $HTML_IMAGES_DIR/$BRANCH/images/sysupgrade/$BRANCH.manifest
 		/bin/mv -fb -t $HTML_IMAGES_DIR/archive/$BRANCH $HTML_IMAGES_DIR/$BRANCH/images
 		/bin/mv -fb -t $HTML_IMAGES_DIR/archive/$BRANCH $HTML_IMAGES_DIR/$BRANCH/modules
-
-		#/bin/rm -rf $HTML_IMAGES_DIR/$BRANCH/
 
 		/bin/mkdir -p $HTML_IMAGES_DIR/$BRANCH
 		/bin/cp -rf -t $HTML_IMAGES_DIR/$BRANCH $BASE_DIR/$BRANCH/gluon/output/images
 		/bin/cp -rf -t $HTML_IMAGES_DIR/$BRANCH $BASE_DIR/$BRANCH/gluon/output/modules
+		/bin/cp -fb $HTML_IMAGES_DIR/$BRANCH/images/sysupgrade/$BRANCH.manifest $HTML_IMAGES_DIR/$BRANCH/images/sysupgrade/$BRANCH-$T.manifest
 
 		/bin/chown -R $USER:$USER $HTML_IMAGES_DIR
 	fi
