@@ -11,9 +11,24 @@ GLUON_SITE_RELEASE="v2016.1.6"
 SITE="ksia"
 USER="u1227"
 
-TARGETS="ar71xx-generic ar71xx-nand"
-#TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-xen_domu x86-kvm_guest"
+# default wifi devices
+TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic"
+
+# raspberry devices
+#TARGETS=$TARGETS" brcm2708-bcm2709 brcm2708-bcm2708 "
+
+# vocore devices
+#TARGETS=$TARGETS" ramips-rt305x"
+
+# bananapi devices
+#TARGETS=$TARGETS" sunxi"
+
+# x86 XEN, KVM
+#TARGETS=$TARGETS" x86-xen_domu x86-kvm_guest"
+
+# x86 generic
 TARGETSx86="x86-generic x86-64"
+
 THREADS="4"
 
 ##
