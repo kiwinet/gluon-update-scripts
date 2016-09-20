@@ -40,14 +40,14 @@ if [ -d "$BASE_DIR/$BRANCH/gluon/output/images" ]; then
 
 	#/usr/bin/sudo -u $USER 
 	make manifest GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE
-exit 1
+
 	cd $MAIN_DIR
 
 	#/usr/bin/sudo -u $USER 
 	$MAIN_DIR/sign.sh $MAIN_DIR/secret $BASE_DIR/$BRANCH/gluon/output/images/sysupgrade/$BRANCH.manifest
 
 	cd $BASE_DIR/$BRANCH/gluon
-
+exit 1
 	if [ -a "$BASE_DIR/$BRANCH/gluon/output/images/sysupgrade/$BRANCH.manifest" ]; then
 
 		/bin/mkdir -p $HTML_IMAGES_DIR/archive/$BRANCH/
