@@ -14,7 +14,7 @@ USER="u1227"
 TARGETS="ar71xx-generic ar71xx-nand"
 #TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-xen_domu x86-kvm_guest"
 TARGETSx86="x86-generic x86-64"
-THREADS="8"
+THREADS="4"
 
 ##
 ##
