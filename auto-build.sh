@@ -121,11 +121,16 @@ if [ -d "$BASE_DIR/$BRANCH/gluon/output/images" ]; then
 
 	if [ -f "$BASE_DIR/$BRANCH/gluon/output/images/sysupgrade/$BRANCH.manifest" ]; then
 
-		/bin/rm -rf $HTML_IMAGES_DIR
+		/bin/mkdir -p $HTML_IMAGES_DIR/archive/$BRANCH/
 
-		/bin/mkdir -p $HTML_IMAGES_DIR
-		/bin/cp -r $BASE_DIR/$BRANCH/gluon/output/images $HTML_IMAGES_DIR
-		/bin/cp -r $BASE_DIR/$BRANCH/gluon/output/modules $HTML_IMAGES_DIR
+		/bin/mv -fb -t $HTML_IMAGES_DIR/archive/$BRANCH $HTML_IMAGES_DIR/$BRANCH/images
+		/bin/mv -fb -t $HTML_IMAGES_DIR/archive/$BRANCH $HTML_IMAGES_DIR/$BRANCH/modules
+
+		#/bin/rm -rf $HTML_IMAGES_DIR/$BRANCH/
+
+		/bin/mkdir -p $HTML_IMAGES_DIR/$BRANCH
+		/bin/cp -rf -t $HTML_IMAGES_DIR/$BRANCH $BASE_DIR/$BRANCH/gluon/output/images
+		/bin/cp -rf -t $HTML_IMAGES_DIR/$BRANCH $BASE_DIR/$BRANCH/gluon/output/modules
 
 		/bin/chown -R $USER:$USER $HTML_IMAGES_DIR
 	fi

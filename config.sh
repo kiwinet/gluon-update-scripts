@@ -17,6 +17,7 @@ TARGETSx86="x86-generic x86-64"
 THREADS="8"
 
 ##
+##
 ## REPO
 ##
 
@@ -28,6 +29,5 @@ SITE_REPO="https://github.com/kiwinet/site-$SITE.git"
 ##
 
 BASE_DIR="/opt/gluon-update"
-HTML_IMAGES_DIR="/home/u1227/web/siauliai.kiwinet.eu/public_html/firmware/$BRANCH/"
-HTML_MODULES_DIR="/home/u1227/web/siauliai.kiwinet.eu/public_html/firmware/$BRANCH/modules"
+HTML_IMAGES_DIR="/home/u1227/web/siauliai.kiwinet.eu/public_html/firmware"
 
