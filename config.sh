@@ -12,7 +12,8 @@ SITE="ksia"
 USER="u1227"
 
 # default wifi devices
-TARGETS="ar71xx-generic ar71xx-mikrotik ar71xx-nand mpc85xx-generic"
+TARGETS="ar71xx-generic"
+#TARGETS="ar71xx-generic ar71xx-mikrotik ar71xx-nand mpc85xx-generic"
 
 # raspberry devices
 #TARGETS=$TARGETS" brcm2708-bcm2709 brcm2708-bcm2708 "
