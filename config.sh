@@ -12,13 +12,13 @@ SITE="ksia"
 USER="u1227"
 
 # default wifi devices
-TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic"
+TARGETS="ar71xx-generic ar71xx-mikrotik ar71xx-nand mpc85xx-generic"
 
 # raspberry devices
 #TARGETS=$TARGETS" brcm2708-bcm2709 brcm2708-bcm2708 "
 
 # vocore devices
-#TARGETS=$TARGETS" ramips-rt305x"
+#TARGETS=$TARGETS" ramips-mt7621 ramips-rt305x"
 
 # bananapi devices
 #TARGETS=$TARGETS" sunxi"
