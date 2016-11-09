@@ -6,7 +6,7 @@
 
 BRANCH_S="stable"
 BRANCH_E="experimental"
-BROKEN=true
+BROKEN=false
 NEW_RELEASE="v0.6"
 GLUON_RELEASE="v2016.2.1"
 GLUON_SITE_RELEASE="master"
