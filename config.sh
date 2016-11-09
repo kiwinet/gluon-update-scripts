@@ -6,8 +6,10 @@
 
 BRANCH_S="stable"
 BRANCH_E="experimental"
-GLUON_RELEASE="v2016.2"
-GLUON_SITE_RELEASE="v2016.2"
+BROKEN=true
+NEW_RELEASE="v0.6"
+GLUON_RELEASE="v2016.2.x"
+GLUON_SITE_RELEASE="exp"
 SITE="ksia"
 USER="u1227"
 
@@ -30,7 +32,7 @@ TARGETS="ar71xx-generic"
 # x86 generic
 TARGETSx86="x86-generic x86-64"
 
-THREADS="4"
+THREADS="3"
 
 ##
 ##
@@ -46,4 +48,5 @@ SITE_REPO="https://github.com/kiwinet/site-$SITE.git"
 
 BASE_DIR="/opt/gluon-update"
 HTML_IMAGES_DIR="/home/u1227/web/siauliai.kiwinet.eu/public_html/firmware"
+HTML_KIWI_DIR="/home/u1227/web/kiwinet.eu/public_html/firmware"
 

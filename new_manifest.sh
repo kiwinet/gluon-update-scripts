@@ -3,7 +3,7 @@
 ##
 ## Config
 ##
-MAIN_DIR="/opt/gluon-update-scripts"
+MAIN_DIR="/opt/gluon-update-scripts-exp"
 
 ##
 ## Body
@@ -50,19 +50,19 @@ if [ -d "$BASE_DIR/$BRANCH/gluon/output/images" ]; then
 
 	if [ -a "$BASE_DIR/$BRANCH/gluon/output/images/sysupgrade/$BRANCH.manifest" ]; then
 
-		/bin/mkdir -p $HTML_IMAGES_DIR/archive/$BRANCH
+		/bin/mkdir -p $HTML_IMAGES_DIR/../_archive/$BRANCH
 		
-		if [ -a "$HTML_IMAGES_DIR/$BRANCH/archive/images/sysupgrade/md5sums" ]; then
-			/bin/more $HTML_IMAGES_DIR/$BRANCH/images/sysupgrade/md5sums >> $HTML_IMAGES_DIR/$BRANCH/archive/images/sysupgrade/md5sums
+		if [ -a "$HTML_IMAGES_DIR/../_archive/$BRANCH/images/sysupgrade/md5sums" ]; then
+			/bin/more $HTML_IMAGES_DIR/$BRANCH/images/sysupgrade/md5sums >> $HTML_IMAGES_DIR/../_archive/$BRANCH/images/sysupgrade/md5sums
 			/bin/rm -f $HTML_IMAGES_DIR/$BRANCH/images/sysupgrade/md5sums
 		fi
-		if [ -a "$HTML_IMAGES_DIR/$BRANCH/archive/images/factory/md5sums" ]; then
-			/bin/more $HTML_IMAGES_DIR/$BRANCH/images/factory/md5sums >> $HTML_IMAGES_DIR/$BRANCH/archive/images/factory/md5sums
+		if [ -a "$HTML_IMAGES_DIR/../_archive/$BRANCH/images/factory/md5sums" ]; then
+			/bin/more $HTML_IMAGES_DIR/$BRANCH/images/factory/md5sums >> $HTML_IMAGES_DIR/../_archive/$BRANCH/images/factory/md5sums
 			/bin/rm -f $HTML_IMAGES_DIR/$BRANCH/images/factory/md5sums
 		fi
 
 		/bin/rm -f $HTML_IMAGES_DIR/$BRANCH/images/sysupgrade/$BRANCH.manifest
-		/bin/cp -rf -t $HTML_IMAGES_DIR/archive/$BRANCH $HTML_IMAGES_DIR/$BRANCH/images
+		/bin/cp -rf -t $HTML_IMAGES_DIR/../_archive/$BRANCH $HTML_IMAGES_DIR/$BRANCH/images
 #		/bin/cp -rf -t $HTML_IMAGES_DIR/archive/$BRANCH $HTML_IMAGES_DIR/$BRANCH/modules
 
 		/bin/rm -rf $HTML_IMAGES_DIR/$BRANCH/images

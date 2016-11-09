@@ -3,7 +3,7 @@
 ##
 ## Config
 ##
-MAIN_DIR="/opt/gluon-update-scripts"
+MAIN_DIR="/opt/gluon-update-scripts-exp"
 
 ##
 ## Body
@@ -13,9 +13,12 @@ source $MAIN_DIR/config.sh
 
 BRANCH=$BRANCH_E
 
-T="$(date +"%Y-%m-%d.%H%M")"
-RELEASE_TAG="$GLUON_RELEASE.${BRANCH:0:1}.$T"
-MY_RELEASE="${GLUON_RELEASE:1}-$BRANCH-$T"
+T="$(date +"%y-%m-%d.%H%M")"
+#RELEASE_TAG="$GLUON_RELEASE.${BRANCH:0:1}.$T"
+#MY_RELEASE="${GLUON_RELEASE:1}-$BRANCH-$T"
+
+RELEASE_TAG="$NEW_RELEASE.${BRANCH:0:1}.$T"
+MY_RELEASE="${NEW_RELEASE:1}-$BRANCH-$T"
 
 {
 
@@ -38,13 +41,19 @@ fi
 # Show summery
 date
 
-echo $RELEASE_TAG
-echo $GLUON_RELEASE
-echo $MY_RELEASE
+echo "New_REL: $NEW_RELEASE"
+echo "R_TAG:   $RELEASE_TAG"
+echo "G_REL:   $GLUON_RELEASE"
+echo "My_REL:  $MY_RELEASE"
 
 echo "Targets: $TARGETS"
 echo "Futro ??? Targets: $TARGETSx86"
 echo "Using $THREADS Cores"
+
+##
+## Exit kai to reikia
+##
+#exit 1
 
 sleep 5 
 
@@ -71,14 +80,18 @@ cd $BASE_DIR/$BRANCH/gluon
 echo "> clean + update"
 date
 
+/bin/rm -rf $BASE_DIR/$BRANCH/gluon/output/images/sysupgrade/*
+/bin/rm -rf $BASE_DIR/$BRANCH/gluon/output/images/factory/*
+/bin/rm -rf $BASE_DIR/$BRANCH/gluon/output/modules/*
+
 for TARGET in $TARGETS #$TARGETSx86
 do
 	#/usr/bin/sudo -u $USER 
-	make clean GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE -j $THREADS
+	make clean GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE BROKEN=$BROKEN -j $THREADS
 done
 
 #/usr/bin/sudo -u $USER 
-make update GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE -j $THREADS
+make update GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE BROKEN=$BROKEN -j $THREADS
 
 sleep 3
 
@@ -87,7 +100,7 @@ do
 	echo "> make $TARGET"
 	date
 	#/usr/bin/sudo -u $USER 
-	make GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE -j $THREADS $1
+	make GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE BROKEN=$BROKEN -j $THREADS $1
 done
 
 if [ -d "$BASE_DIR/$BRANCH/gluon/output/images" ]; then
@@ -110,7 +123,7 @@ if [ -d "$BASE_DIR/$BRANCH/gluon/output/images" ]; then
 	cd $BASE_DIR/$BRANCH/gluon
 
 	#/usr/bin/sudo -u $USER 
-	make manifest GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE
+	make manifest GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE BROKEN=$BROKEN
 
 	cd $MAIN_DIR
 
@@ -121,19 +134,19 @@ if [ -d "$BASE_DIR/$BRANCH/gluon/output/images" ]; then
 
 	if [ -a "$BASE_DIR/$BRANCH/gluon/output/images/sysupgrade/$BRANCH.manifest" ]; then
 
-		/bin/mkdir -p $HTML_IMAGES_DIR/archive/$BRANCH
+		/bin/mkdir -p $HTML_IMAGES_DIR/../_archive/$BRANCH
 		
-		if [ -a "$HTML_IMAGES_DIR/$BRANCH/archive/images/sysupgrade/md5sums" ]; then
-			/bin/more $HTML_IMAGES_DIR/$BRANCH/images/sysupgrade/md5sums >> $HTML_IMAGES_DIR/$BRANCH/archive/images/sysupgrade/md5sums
+		if [ -a "$HTML_IMAGES_DIR/../_archive/$BRANCH/images/sysupgrade/md5sums" ]; then
+			/bin/more $HTML_IMAGES_DIR/$BRANCH/images/sysupgrade/md5sums >> $HTML_IMAGES_DIR/../_archive/$BRANCH/images/sysupgrade/md5sums
 			/bin/rm -f $HTML_IMAGES_DIR/$BRANCH/images/sysupgrade/md5sums
 		fi
-		if [ -a "$HTML_IMAGES_DIR/$BRANCH/archive/images/factory/md5sums" ]; then
-			/bin/more $HTML_IMAGES_DIR/$BRANCH/images/factory/md5sums >> $HTML_IMAGES_DIR/$BRANCH/archive/images/factory/md5sums
+		if [ -a "$HTML_IMAGES_DIR/../_archive/$BRANCH/images/factory/md5sums" ]; then
+			/bin/more $HTML_IMAGES_DIR/$BRANCH/images/factory/md5sums >> $HTML_IMAGES_DIR/../_archive/$BRANCH/images/factory/md5sums
 			/bin/rm -f $HTML_IMAGES_DIR/$BRANCH/images/factory/md5sums
 		fi
 
 		/bin/rm -f $HTML_IMAGES_DIR/$BRANCH/images/sysupgrade/$BRANCH.manifest
-		/bin/cp -rf -t $HTML_IMAGES_DIR/archive/$BRANCH $HTML_IMAGES_DIR/$BRANCH/images
+		/bin/cp -rf -t $HTML_IMAGES_DIR/../_archive/$BRANCH $HTML_IMAGES_DIR/$BRANCH/images
 #		/bin/cp -rf -t $HTML_IMAGES_DIR/archive/$BRANCH $HTML_IMAGES_DIR/$BRANCH/modules
 
 		/bin/rm -rf $HTML_IMAGES_DIR/$BRANCH/images
@@ -143,7 +156,11 @@ if [ -d "$BASE_DIR/$BRANCH/gluon/output/images" ]; then
 		/bin/cp -rf -t $HTML_IMAGES_DIR/$BRANCH $BASE_DIR/$BRANCH/gluon/output/modules
 		/bin/cp -f $HTML_IMAGES_DIR/$BRANCH/images/sysupgrade/$BRANCH.manifest $HTML_IMAGES_DIR/$BRANCH/images/sysupgrade/$BRANCH-$T.manifest
 
+		/usr/bin/curl -L http://siauliai.kiwinet.eu/firmware/$BRANCH/images/factory > $HTML_KIWI_DIR/$BRANCH/factory/index.html
+		/usr/bin/curl -L http://siauliai.kiwinet.eu/firmware/$BRANCH/images/sysupgrade > $HTML_KIWI_DIR/$BRANCH/sysupgrade/index.html
+
 		/bin/chown -R $USER:$USER $HTML_IMAGES_DIR
+		/bin/chown -R $USER:$USER $HTML_KIWI_DIR
 	fi
 
 fi

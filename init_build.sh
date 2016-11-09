@@ -1,7 +1,7 @@
 #!/bin/bash
 ##
 
-source /opt/gluon-update-scripts/config.sh
+source /opt/gluon-update-scripts-exp/config.sh
 
 if [ -z "$1" ]; then
 	echo 'stable, beta or experimental 1'
