@@ -8,8 +8,8 @@ BRANCH_S="stable"
 BRANCH_E="experimental"
 BROKEN=true
 NEW_RELEASE="v0.6"
-GLUON_RELEASE="v2016.2.x"
-GLUON_SITE_RELEASE="exp"
+GLUON_RELEASE="v2016.2.1"
+GLUON_SITE_RELEASE="master"
 SITE="ksia"
 USER="u1227"
 
