@@ -4,6 +4,7 @@
 ## Config
 ##
 MAIN_DIR="/opt/gluon-update-scripts-exp"
+T="$(date +"%y-%m-%d.%H%M")"
 
 ##
 ## Body
@@ -11,16 +12,41 @@ MAIN_DIR="/opt/gluon-update-scripts-exp"
 NEW="0"
 source $MAIN_DIR/config.sh
 
-BRANCH=$BRANCH_E
+{
 
-T="$(date +"%y-%m-%d.%H%M")"
-#RELEASE_TAG="$GLUON_RELEASE.${BRANCH:0:1}.$T"
-#MY_RELEASE="${GLUON_RELEASE:1}-$BRANCH-$T"
+##
+## Start Variables
+##
+if [ -z "$1" ]; then
+	echo "Please select 's', 'b' or 'e'"
+else
+	if [ "$1" == "s" ]; then
+		BRANCH=$BRANCH_S
+		GLUON_SITE_RELEASE=$SITE_RELEASE_S
+		NEW_RELEASE=$NEW_RELEASE_S
+	elif [ "$1" == "b" ]; then
+		BRANCH=$BRANCH_B
+		GLUON_SITE_RELEASE=$SITE_RELEASE_B
+		NEW_RELEASE=$NEW_RELEASE_B
+		echo 'BETA not exist'
+		exit 1
+	elif [ "$1" == "e" ]; then
+		BRANCH=$BRANCH_E
+		GLUON_SITE_RELEASE=$SITE_RELEASE_E
+		NEW_RELEASE=$NEW_RELEASE_E
+	else
+		echo "Please select 's', 'b' or 'e'"
+		exit 1
+	fi
+	if [ -z "$2" ]; then
+		DEBUG=''
+	else 
+		DEBUG=$2
+	fi
+fi
 
 RELEASE_TAG="$NEW_RELEASE.${BRANCH:0:1}.$T"
 MY_RELEASE="${NEW_RELEASE:1}-$BRANCH-$T"
-
-{
 
 cd $MAIN_DIR
 if [ ! -d "$BASE_DIR" ]; then
@@ -100,7 +126,7 @@ do
 	echo "> make $TARGET"
 	date
 	#/usr/bin/sudo -u $USER 
-	make GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE BROKEN=$BROKEN -j $THREADS $1
+	make GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE BROKEN=$BROKEN -j $THREADS $DEBUG
 done
 
 if [ -d "$BASE_DIR/$BRANCH/gluon/output/images" ]; then
