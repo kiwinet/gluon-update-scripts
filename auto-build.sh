@@ -19,6 +19,7 @@ source $MAIN_DIR/config.sh
 ##
 if [ -z "$1" ]; then
 	echo "Please select 's', 'b' or 'e'"
+	exit 1
 else
 	if [ "$1" == "s" ]; then
 		BRANCH=$BRANCH_S
