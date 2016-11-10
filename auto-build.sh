@@ -3,7 +3,10 @@
 ##
 ## Config
 ##
-MAIN_DIR="/opt/gluon-update-scripts-exp"
+SCRIPT=$(readlink -f "$0")
+MAIN_DIR=`dirname "$SCRIPT"`
+export PATH=$PATH:$MAIN_DIR
+
 T="$(date +"%y-%m-%d.%H%M")"
 
 ##
