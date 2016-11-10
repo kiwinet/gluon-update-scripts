@@ -25,16 +25,19 @@ else
 		BRANCH=$BRANCH_S
 		GLUON_SITE_RELEASE=$SITE_RELEASE_S
 		NEW_RELEASE=$NEW_RELEASE_S
+		TARGETS=$TARGETS_S
 	elif [ "$1" == "b" ]; then
 		BRANCH=$BRANCH_B
 		GLUON_SITE_RELEASE=$SITE_RELEASE_B
 		NEW_RELEASE=$NEW_RELEASE_B
+		TARGETS=$TARGETS_B
 		echo 'BETA not exist'
 		exit 1
 	elif [ "$1" == "e" ]; then
 		BRANCH=$BRANCH_E
 		GLUON_SITE_RELEASE=$SITE_RELEASE_E
 		NEW_RELEASE=$NEW_RELEASE_E
+		TARGETS=$TARGETS_E
 	else
 		echo "Please select 's', 'b' or 'e'"
 		exit 1
