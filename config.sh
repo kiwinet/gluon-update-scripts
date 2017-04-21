@@ -7,13 +7,15 @@
 BRANCH_S="stable"
 BRANCH_B="beta"
 BRANCH_E="experimental"
-BROKEN=false
+BROKEN_S=false
+BROKEN_B=false
+BROKEN_E=false
 NEW_RELEASE_S="v0.6"
 NEW_RELEASE_B="v0.6"
-NEW_RELEASE_E="v0.6.1"
+NEW_RELEASE_E="v0.6.5"
 GLUON_RELEASE_S="v2016.2.1"
 GLUON_RELEASE_B="v2016.2.1"
-GLUON_RELEASE_E="v2016.2.1"
+GLUON_RELEASE_E="v2016.2.5"
 SITE_RELEASE_S=$NEW_RELEASE_S
 SITE_RELEASE_B=$NEW_RELEASE_B"-beta"
 SITE_RELEASE_E="master"
@@ -21,7 +23,7 @@ SITE="ksia"
 USER="u1227"
 
 # default wifi devices
-TARGETS_E="ar71xx-generic"
+TARGETS_E="ar71xx-generic ar71xx-mikrotik ar71xx-nand"
 TARGETS_B="ar71xx-generic"
 TARGETS_S="ar71xx-generic ar71xx-mikrotik ar71xx-nand mpc85xx-generic"
 
