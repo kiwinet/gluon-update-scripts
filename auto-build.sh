@@ -78,12 +78,6 @@ if [ ! -d "$BASE_DIR/$BRANCH/gluon" ]; then
 	NEW="1"
 fi
 
-echo "0" $MAIN_DIR
-
-echo "1" $BASE_DIR
-
-echo "2" $NEW
-exit 1
 
 # Show summery
 date
