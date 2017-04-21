@@ -69,7 +69,7 @@ fi
 
 echo "1" $BASE_DIR
 echo "2" $NEW
-exit()
+exit 1
 
 if [ ! -d "$BASE_DIR/$BRANCH" ]; then
 	$MAIN_DIR/init_build.sh $BRANCH
