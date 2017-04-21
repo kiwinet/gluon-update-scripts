@@ -67,6 +67,10 @@ if [ ! -d "$BASE_DIR" ]; then
 	NEW="1"
 fi
 
+echo "1" $BASE_DIR
+echo "2" $NEW
+exit()
+
 if [ ! -d "$BASE_DIR/$BRANCH" ]; then
 	$MAIN_DIR/init_build.sh $BRANCH
 	NEW="1"
@@ -96,8 +100,8 @@ echo "Using $THREADS Cores"
 
 sleep 5 
 
-cd $BASE_DIR/$BRANCH/gluon
 if [ "$NEW" == '0' ]; then
+	cd $BASE_DIR/$BRANCH/gluon
 	##
 	## pull GLUON release
 	##
