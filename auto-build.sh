@@ -55,7 +55,7 @@ else
 	if [ -z "$2" ]; then
 		DEBUG=''
 	else 
-		DEBUG=$2
+		DEBUG='V=s'
 	fi
 fi
 
