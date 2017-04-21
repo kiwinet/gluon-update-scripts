@@ -67,7 +67,10 @@ if [ ! -d "$BASE_DIR" ]; then
 	NEW="1"
 fi
 
+echo "0" $MAIN_DIR
+
 echo "1" $BASE_DIR
+
 echo "2" $NEW
 exit 1
 
