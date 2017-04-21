@@ -1,7 +1,20 @@
 #!/bin/bash
 ##
+##
+##
+## Config
+##
+SCRIPT=$(readlink -f "$0")
+MAIN_DIR=`dirname "$SCRIPT"`
+export PATH=$PATH:$MAIN_DIR
 
-source /opt/gluon-update-scripts-exp/config.sh
+##
+## Body
+##
+source $MAIN_DIR/config.sh
+
+
+source /opt/gluon-update-scripts/config.sh
 
 if [ -z "$1" ]; then
 	echo 'stable, beta or experimental 1'
