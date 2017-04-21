@@ -16,6 +16,7 @@ NEW="0"
 source $MAIN_DIR/config.sh
 
 {
+echo " "
 
 ##
 ## Start Variables
