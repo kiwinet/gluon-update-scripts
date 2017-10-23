@@ -70,6 +70,7 @@ cd $BASE_DIR/$1
 git clone $REPO gluon -b $GLUON_RELEASE
 
 cd $BASE_DIR/$1/gluon
+git fetch
 git checkout $GLUON_RELEASE
 
 /bin/rm -rf $BASE_DIR/$1/gluon/site
@@ -79,4 +80,5 @@ git checkout $GLUON_RELEASE
 git clone $SITE_REPO site -b $GLUON_SITE_BRANCH
 
 cd $BASE_DIR/$1/gluon/site
+git fetch
 git checkout tags/$GLUON_SITE_RELEASE

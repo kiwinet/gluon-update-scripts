@@ -106,6 +106,7 @@ if [ "$NEW" == '0' ]; then
 	##
 	## pull GLUON release
 	##
+	git fetch
 	git checkout $GLUON_RELEASE
 	git pull $REPO $GLUON_RELEASE
 
@@ -116,6 +117,7 @@ if [ "$NEW" == '0' ]; then
 	git clone $SITE_REPO site -b $GLUON_SITE_BRANCH
 
 	cd $BASE_DIR/$BRANCH/gluon/site
+	git fetch
 	git checkout tags/$GLUON_SITE_RELEASE
 fi
 cd $BASE_DIR/$BRANCH/gluon
