@@ -6,6 +6,7 @@
 SCRIPT=$(readlink -f "$0")
 MAIN_DIR=`dirname "$SCRIPT"`
 export PATH=$PATH:$MAIN_DIR
+export FORCE_UNSAFE_CONFIGURE=1
 
 T="$(date +"%y-%m-%d.%H%M")"
 
@@ -32,6 +33,7 @@ else
 		NEW_RELEASE=$NEW_RELEASE_S
 		TARGETS=$TARGETS_S
 		GLUON_RELEASE=$GLUON_RELEASE_S
+		GLUON_BRANCH=$GLUON_BRANCH_S
 		BROKEN=$BROKEN_S
 	elif [ "$1" == "b" ]; then
 		BRANCH=$BRANCH_B
@@ -40,6 +42,7 @@ else
 		NEW_RELEASE=$NEW_RELEASE_B
 		TARGETS=$TARGETS_B
 		GLUON_RELEASE=$GLUON_RELEASE_B
+		GLUON_BRANCH=$GLUON_BRANCH_B
 		BROKEN=$BROKEN_B
 		#echo 'BETA not exist'
 		#exit 1
@@ -50,6 +53,7 @@ else
 		NEW_RELEASE=$NEW_RELEASE_E
 		TARGETS=$TARGETS_E
 		GLUON_RELEASE=$GLUON_RELEASE_E
+		GLUON_BRANCH=$GLUON_BRANCH_E
 		BROKEN=$BROKEN_E
 	else
 		echo "Please select 's', 'b' or 'e'"
@@ -107,8 +111,8 @@ if [ "$NEW" == '0' ]; then
 	## pull GLUON release
 	##
 	git fetch
-	git checkout $GLUON_RELEASE
-	git pull $REPO $GLUON_RELEASE
+	git pull $REPO $GLUON_BRANCH
+	git checkout tags/$GLUON_RELEASE
 
 	/bin/rm -rf $BASE_DIR/$BRANCH/gluon/site
 	##
