@@ -116,7 +116,7 @@ if [ "$NEW" == '0' ]; then
 	git clone $SITE_REPO site -b $GLUON_SITE_BRANCH
 
 	cd $BASE_DIR/$BRANCH/gluon/site
-	git checkout tags/$GLUON_SITE_RELEASE -b $GLUON_SITE_BRANCH
+	git checkout tags/$GLUON_SITE_RELEASE
 fi
 cd $BASE_DIR/$BRANCH/gluon
 
