@@ -16,6 +16,7 @@ NEW="0"
 source $MAIN_DIR/config.sh
 
 {
+echo " "
 
 ##
 ## Start Variables
@@ -29,18 +30,24 @@ else
 		GLUON_SITE_RELEASE=$SITE_RELEASE_S
 		NEW_RELEASE=$NEW_RELEASE_S
 		TARGETS=$TARGETS_S
+		GLUON_RELEASE=$GLUON_RELEASE_S
+		BROKEN=$BROKEN_S
 	elif [ "$1" == "b" ]; then
 		BRANCH=$BRANCH_B
 		GLUON_SITE_RELEASE=$SITE_RELEASE_B
 		NEW_RELEASE=$NEW_RELEASE_B
 		TARGETS=$TARGETS_B
-		echo 'BETA not exist'
-		exit 1
+		GLUON_RELEASE=$GLUON_RELEASE_B
+		BROKEN=$BROKEN_B
+		#echo 'BETA not exist'
+		#exit 1
 	elif [ "$1" == "e" ]; then
 		BRANCH=$BRANCH_E
 		GLUON_SITE_RELEASE=$SITE_RELEASE_E
 		NEW_RELEASE=$NEW_RELEASE_E
 		TARGETS=$TARGETS_E
+		GLUON_RELEASE=$GLUON_RELEASE_E
+		BROKEN=$BROKEN_E
 	else
 		echo "Please select 's', 'b' or 'e'"
 		exit 1
@@ -48,7 +55,7 @@ else
 	if [ -z "$2" ]; then
 		DEBUG=''
 	else 
-		DEBUG=$2
+		DEBUG='V=s'
 	fi
 fi
 
@@ -71,6 +78,7 @@ if [ ! -d "$BASE_DIR/$BRANCH/gluon" ]; then
 	NEW="1"
 fi
 
+
 # Show summery
 date
 
@@ -90,8 +98,8 @@ echo "Using $THREADS Cores"
 
 sleep 5 
 
-cd $BASE_DIR/$BRANCH/gluon
 if [ "$NEW" == '0' ]; then
+	cd $BASE_DIR/$BRANCH/gluon
 	##
 	## pull GLUON release
 	##
