@@ -7,6 +7,7 @@
 SCRIPT=$(readlink -f "$0")
 MAIN_DIR=`dirname "$SCRIPT"`
 export PATH=$PATH:$MAIN_DIR
+export FORCE_UNSAFE_CONFIGURE=1	
 
 ##
 ## Body
@@ -24,25 +25,31 @@ fi
 if [ "$1" == "stable" ]; then
 	BRANCH=$BRANCH_S
 	GLUON_SITE_RELEASE=$SITE_RELEASE_S
+	GLUON_SITE_BRANCH=$SITE_BRANCH_S
 	NEW_RELEASE=$NEW_RELEASE_S
 	TARGETS=$TARGETS_S
 	GLUON_RELEASE=$GLUON_RELEASE_S
+	GLUON_BRANCH=$GLUON_BRANCH_S
 	BROKEN=$BROKEN_S
 elif [ "$1" == "beta" ]; then
 	BRANCH=$BRANCH_B
 	GLUON_SITE_RELEASE=$SITE_RELEASE_B
+	GLUON_SITE_BRANCH=$SITE_BRANCH_B
 	NEW_RELEASE=$NEW_RELEASE_B
 	TARGETS=$TARGETS_B
 	GLUON_RELEASE=$GLUON_RELEASE_B
+	GLUON_BRANCH=$GLUON_BRANCH_B
 	BROKEN=$BROKEN_B
 	#echo 'BETA not exist'
 	#exit 1
 elif [ "$1" == "experimental" ]; then
 	BRANCH=$BRANCH_E
 	GLUON_SITE_RELEASE=$SITE_RELEASE_E
+	GLUON_SITE_BRANCH=$SITE_BRANCH_E
 	NEW_RELEASE=$NEW_RELEASE_E
 	TARGETS=$TARGETS_E
 	GLUON_RELEASE=$GLUON_RELEASE_E
+	GLUON_BRANCH=$GLUON_BRANCH_E
 	BROKEN=$BROKEN_E
 else
 	echo 'stable, beta or experimental 1'
@@ -64,16 +71,18 @@ cd $BASE_DIR/$1
 ##
 ## clone GLUON
 ##
-git clone $REPO gluon -b $GLUON_RELEASE
+git clone $REPO gluon -b $GLUON_BRANCH
 
 cd $BASE_DIR/$1/gluon
-git checkout $GLUON_RELEASE
+git fetch
+git checkout tags/$GLUON_RELEASE
 
 /bin/rm -rf $BASE_DIR/$1/gluon/site
 ##
 ## clone SITE config
 ##
-git clone $SITE_REPO site -b $GLUON_SITE_RELEASE
+git clone $SITE_REPO site -b $GLUON_SITE_BRANCH
 
 cd $BASE_DIR/$1/gluon/site
-git checkout $GLUON_SITE_RELEASE
+git fetch
+git checkout tags/$GLUON_SITE_RELEASE

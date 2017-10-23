@@ -4,23 +4,34 @@
 ## Main config
 ##
 
+SITE="ksia"
+USER="u1227"
 BRANCH_S="stable"
 BRANCH_B="beta"
 BRANCH_E="experimental"
 BROKEN_S=false
 BROKEN_B=false
 BROKEN_E=false
+
 NEW_RELEASE_S="v0.6"
 NEW_RELEASE_B="v0.6.7"
 NEW_RELEASE_E="v0.7.0"
+
 GLUON_RELEASE_S="v2016.2.1"
 GLUON_RELEASE_B="v2016.2.7"
 GLUON_RELEASE_E="v2017.1.3"
+
+GLUON_BRANCH_S="v2016.2.x"
+GLUON_BRANCH_B="v2016.2.x"
+GLUON_BRANCH_E="v2017.1.x"
+
+SITE_BRANCH_S="stable"
+SITE_BRANCH_B="beta"
+SITE_BRANCH_E="exp"
+
 SITE_RELEASE_S=$NEW_RELEASE_S
 SITE_RELEASE_B=$NEW_RELEASE_B"-beta"
 SITE_RELEASE_E=$NEW_RELEASE_E"-exp"
-SITE="ksia"
-USER="u1227"
 
 # default wifi devices
 TARGETS_E="ar71xx-generic ar71xx-mikrotik ar71xx-nand"
