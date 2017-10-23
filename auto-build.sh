@@ -39,8 +39,8 @@ else
 		TARGETS=$TARGETS_B
 		GLUON_RELEASE=$GLUON_RELEASE_B
 		BROKEN=$BROKEN_B
-		echo 'BETA not exist'
-		exit 1
+		#echo 'BETA not exist'
+		#exit 1
 	elif [ "$1" == "e" ]; then
 		BRANCH=$BRANCH_E
 		GLUON_SITE_RELEASE=$SITE_RELEASE_E
