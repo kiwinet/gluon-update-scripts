@@ -7,7 +7,7 @@
 SCRIPT=$(readlink -f "$0")
 MAIN_DIR=`dirname "$SCRIPT"`
 export PATH=$PATH:$MAIN_DIR
-export FORCE_UNSAFE_CONFIGURE=1
+export FORCE_UNSAFE_CONFIGURE=1	
 
 ##
 ## Body
