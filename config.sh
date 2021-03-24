@@ -19,11 +19,11 @@ NEW_RELEASE_E="v0.7.0"
 
 GLUON_RELEASE_S="v2016.2.1"
 GLUON_RELEASE_B="v2016.2.7"
-GLUON_RELEASE_E="v2017.1.3"
+GLUON_RELEASE_E="v2020.2.2"
 
 GLUON_BRANCH_S="v2016.2.x"
 GLUON_BRANCH_B="v2016.2.x"
-GLUON_BRANCH_E="v2017.1.x"
+GLUON_BRANCH_E="v2020.2.x"
 
 SITE_BRANCH_S="stable"
 SITE_BRANCH_B="beta"
@@ -34,7 +34,9 @@ SITE_RELEASE_B=$NEW_RELEASE_B"-beta"
 SITE_RELEASE_E=$NEW_RELEASE_E"-exp"
 
 # default wifi devices
-TARGETS_E="ar71xx-generic ar71xx-mikrotik ar71xx-nand"
+#TARGETS_E="ar71xx-generic ar71xx-mikrotik ar71xx-nand"
+#TARGETS_E="ar71xx-generic ar71xx-tiny"# mpc85xx-generic ramips-mt7620 ramips-mt76x8"
+TARGETS_E="ar71xx-generic ar71xx-tiny mpc85xx-generic"
 TARGETS_B="ar71xx-generic"
 TARGETS_S="ar71xx-generic ar71xx-mikrotik ar71xx-nand mpc85xx-generic"
 
