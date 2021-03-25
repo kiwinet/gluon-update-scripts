@@ -61,7 +61,7 @@ else
 	fi
 	if [ -z "$2" ]; then
 		DEBUG=''
-	else 
+	else
 		DEBUG='V=s'
 	fi
 fi
@@ -103,7 +103,7 @@ echo "Using $THREADS Cores"
 ##
 #exit 1
 
-sleep 5 
+sleep 5
 
 if [ "$NEW" == '0' ]; then
 	cd $BASE_DIR/$BRANCH/gluon
@@ -136,11 +136,11 @@ date
 
 for TARGET in $TARGETS #$TARGETSx86
 do
-	#/usr/bin/sudo -u $USER 
+	#/usr/bin/sudo -u $USER
 	make clean GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE BROKEN=$BROKEN -j $THREADS
 done
 
-#/usr/bin/sudo -u $USER 
+#/usr/bin/sudo -u $USER
 make update GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE BROKEN=$BROKEN -j $THREADS
 
 sleep 3
@@ -149,7 +149,7 @@ for TARGET in $TARGETS
 do
 	echo "> make $TARGET"
 	date
-	#/usr/bin/sudo -u $USER 
+	#/usr/bin/sudo -u $USER
 	make GLUON_TARGET=$TARGET GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE BROKEN=$BROKEN -j $THREADS $DEBUG
 done
 
@@ -172,12 +172,12 @@ if [ -d "$BASE_DIR/$BRANCH/gluon/output/images" ]; then
 	date
 	cd $BASE_DIR/$BRANCH/gluon
 
-	#/usr/bin/sudo -u $USER 
+	#/usr/bin/sudo -u $USER
 	make manifest GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE BROKEN=$BROKEN
 
 	cd $MAIN_DIR
 
-	#/usr/bin/sudo -u $USER 
+	#/usr/bin/sudo -u $USER
 	$MAIN_DIR/sign.sh $MAIN_DIR/secret $BASE_DIR/$BRANCH/gluon/output/images/sysupgrade/$BRANCH.manifest
 
 	cd $BASE_DIR/$BRANCH/gluon
@@ -185,7 +185,7 @@ if [ -d "$BASE_DIR/$BRANCH/gluon/output/images" ]; then
 	if [ -a "$BASE_DIR/$BRANCH/gluon/output/images/sysupgrade/$BRANCH.manifest" ]; then
 
 		/bin/mkdir -p $HTML_IMAGES_DIR/../_archive/$BRANCH
-		
+
 		if [ -a "$HTML_IMAGES_DIR/../_archive/$BRANCH/images/sysupgrade/md5sums" ]; then
 			/bin/more $HTML_IMAGES_DIR/$BRANCH/images/sysupgrade/md5sums >> $HTML_IMAGES_DIR/../_archive/$BRANCH/images/sysupgrade/md5sums
 			/bin/rm -f $HTML_IMAGES_DIR/$BRANCH/images/sysupgrade/md5sums
