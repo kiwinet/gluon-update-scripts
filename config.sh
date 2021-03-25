@@ -27,11 +27,11 @@ GLUON_BRANCH_E="v2020.2.x"
 
 SITE_BRANCH_S="stable"
 SITE_BRANCH_B="beta"
-SITE_BRANCH_E="exp"
+SITE_BRANCH_E="master"
 
 SITE_RELEASE_S=$NEW_RELEASE_S
 SITE_RELEASE_B=$NEW_RELEASE_B"-beta"
-SITE_RELEASE_E=$NEW_RELEASE_E"-exp"
+SITE_RELEASE_E=$NEW_RELEASE_E"-master"
 
 # default wifi devices
 #TARGETS_E="ar71xx-generic ar71xx-mikrotik ar71xx-nand"
