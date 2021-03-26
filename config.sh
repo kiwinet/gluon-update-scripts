@@ -55,7 +55,7 @@ TARGETS_S="ar71xx-generic ar71xx-mikrotik ar71xx-nand mpc85xx-generic"
 # x86 generic
 TARGETSx86="x86-generic x86-64"
 
-THREADS="2"
+THREADS="1"
 
 ##
 ##
