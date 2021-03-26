@@ -16,8 +16,7 @@ T="$(date +"%y-%m-%d.%H%M")"
 NEW="0"
 source $MAIN_DIR/config.sh
 
-{
-echo " "
+
 
 ##
 ## Start Variables
@@ -68,6 +67,9 @@ fi
 
 RELEASE_TAG="$NEW_RELEASE.${BRANCH:0:1}.$T"
 MY_RELEASE="${NEW_RELEASE:1}-$BRANCH-$T"
+
+{
+echo " "
 
 cd $MAIN_DIR
 if [ ! -d "$BASE_DIR" ]; then
