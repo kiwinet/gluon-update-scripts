@@ -53,9 +53,10 @@ TARGETS_S="ar71xx-generic ar71xx-mikrotik ar71xx-nand mpc85xx-generic"
 #TARGETS=$TARGETS" x86-xen_domu x86-kvm_guest"
 
 # x86 generic
-TARGETSx86="x86-generic x86-64"
+#TARGETSx86="x86-generic x86-64"
+TARGETSx86=""
 
-THREADS="3"
+THREADS="4"
 
 ##
 ##
