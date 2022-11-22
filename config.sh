@@ -15,15 +15,15 @@ BROKEN_E=false
 
 NEW_RELEASE_S="v0.6"
 NEW_RELEASE_B="v0.6.7"
-NEW_RELEASE_E="v0.7.0"
+NEW_RELEASE_E="v0.9.1"
 
 GLUON_RELEASE_S="v2016.2.1"
 GLUON_RELEASE_B="v2016.2.7"
-GLUON_RELEASE_E="v2020.1.4"
+GLUON_RELEASE_E="v2022.1.1"
 
 GLUON_BRANCH_S="v2016.2.x"
 GLUON_BRANCH_B="v2016.2.x"
-GLUON_BRANCH_E="v2020.1.x"
+GLUON_BRANCH_E="v2022.1.x"
 
 SITE_BRANCH_S="stable"
 SITE_BRANCH_B="beta"
@@ -34,11 +34,11 @@ SITE_RELEASE_B=$NEW_RELEASE_B"-beta"
 SITE_RELEASE_E=$NEW_RELEASE_E"-master"
 
 # default wifi devices
+TARGETS_S="ar71xx-generic ar71xx-mikrotik ar71xx-nand mpc85xx-generic"
+TARGETS_B="ar71xx-generic"
+TARGETS_E="ar71xx-generic ramips-mt7620 ramips-mt7621 ramips-mt76x8 mpc85xx-p1010"
 #TARGETS_E="ar71xx-generic ar71xx-mikrotik ar71xx-nand"
 #TARGETS_E="ar71xx-generic ar71xx-tiny"# mpc85xx-generic ramips-mt7620 ramips-mt76x8"
-TARGETS_E="ar71xx-generic ar71xx-tiny mpc85xx-generic"
-TARGETS_B="ar71xx-generic"
-TARGETS_S="ar71xx-generic ar71xx-mikrotik ar71xx-nand mpc85xx-generic"
 
 # raspberry devices
 #TARGETS=$TARGETS" brcm2708-bcm2709 brcm2708-bcm2708 "
