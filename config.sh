@@ -36,10 +36,11 @@ SITE_RELEASE_E=$NEW_RELEASE_E"-master"
 # default wifi devices
 TARGETS_S="ar71xx-generic ar71xx-mikrotik ar71xx-nand mpc85xx-generic"
 TARGETS_B="ar71xx-generic"
-TARGETS_E="ath79-generic"
+# TARGETS_E="ath79-generic"
 #TARGETS_E="ath79-generic ramips-mt7620 ramips-mt7621 ramips-mt76x8 mpc85xx-p1010"
 #TARGETS_E="ar71xx-generic ar71xx-mikrotik ar71xx-nand"
-#TARGETS_E="ar71xx-generic ar71xx-tiny"# mpc85xx-generic ramips-mt7620 ramips-mt76x8"
+TARGETS_E="ar71xx-generic ar71xx-tiny ramips-mt76x8"
+# mpc85xx-generic ramips-mt7620 ramips-mt76x8"
 
 # raspberry devices
 #TARGETS=$TARGETS" brcm2708-bcm2709 brcm2708-bcm2708 "
