@@ -138,12 +138,14 @@ date
 /bin/rm -rf $BASE_DIR/$BRANCH/gluon/output/images/factory/*
 /bin/rm -rf $BASE_DIR/$BRANCH/gluon/output/modules/*
 
-for TARGET in $TARGETS #$TARGETSx86
-do
-	echo "> make clean $TARGET"
-	#/usr/bin/sudo -u $USER
-	make clean GLUON_TARGET=$TARGET GLUON_AUTOUPDATER_BRANCH=$BRANCH GLUON_AUTOUPDATER_ENABLED=1 GLUON_RELEASE=$MY_RELEASE BROKEN=$BROKEN -j $THREADS
-done
+if [ "$NEW" == '0' ]; then
+	for TARGET in $TARGETS #$TARGETSx86
+	do
+		echo "> make clean $TARGET"
+		#/usr/bin/sudo -u $USER
+		make clean GLUON_TARGET=$TARGET GLUON_AUTOUPDATER_BRANCH=$BRANCH GLUON_AUTOUPDATER_ENABLED=1 GLUON_RELEASE=$MY_RELEASE BROKEN=$BROKEN -j $THREADS
+	done
+fi
 
 echo "> make update"
 #/usr/bin/sudo -u $USER
