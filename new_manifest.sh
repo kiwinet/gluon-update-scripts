@@ -39,7 +39,7 @@ if [ -d "$BASE_DIR/$BRANCH/gluon/output/images" ]; then
 	cd $BASE_DIR/$BRANCH/gluon
 
 	#/usr/bin/sudo -u $USER 
-	make manifest GLUON_BRANCH=$BRANCH GLUON_RELEASE=$MY_RELEASE
+	make manifest GLUON_AUTOUPDATER_BRANCH=$BRANCH GLUON_AUTOUPDATER_ENABLED=1 GLUON_RELEASE=$MY_RELEASE
 
 	cd $MAIN_DIR
 
