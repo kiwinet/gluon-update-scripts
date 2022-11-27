@@ -15,7 +15,7 @@ BROKEN_E=false
 
 NEW_RELEASE_S="v0.6"
 NEW_RELEASE_B="v0.6.7"
-NEW_RELEASE_E="v0.9.2"
+NEW_RELEASE_E="v0.9.3"
 
 GLUON_RELEASE_S="v2016.2.1"
 GLUON_RELEASE_B="v2016.2.7"
@@ -75,4 +75,3 @@ SITE_REPO="https://github.com/kiwinet/site-$SITE.git"
 BASE_DIR="/opt/gluon-update"
 HTML_IMAGES_DIR="/home/u1227/web/siauliai.kiwinet.eu/public_html/firmware"
 HTML_KIWI_DIR="/home/u1227/web/kiwinet.eu/public_html/firmware"
-
