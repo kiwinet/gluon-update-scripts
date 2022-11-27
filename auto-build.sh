@@ -62,6 +62,7 @@ else
 		DEBUG=''
 	else
 		DEBUG='V=s'
+		THREADS="1"
 	fi
 fi
 
