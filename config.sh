@@ -15,7 +15,7 @@ BROKEN_E=false
 
 NEW_RELEASE_S="v0.6"
 NEW_RELEASE_B="v0.6.7"
-NEW_RELEASE_E="v0.9.3"
+NEW_RELEASE_E="v0.9.4"
 
 GLUON_RELEASE_S="v2016.2.1"
 GLUON_RELEASE_B="v2016.2.7"
@@ -39,7 +39,7 @@ TARGETS_B="ar71xx-generic"
 # TARGETS_E="ath79-generic"
 #TARGETS_E="ath79-generic ramips-mt7620 ramips-mt7621 ramips-mt76x8 mpc85xx-p1010"
 #TARGETS_E="ar71xx-generic ar71xx-mikrotik ar71xx-nand"
-TARGETS_E="ar71xx-generic ar71xx-tiny ramips-mt76x8"
+TARGETS_E="ar71xx-generic ar71xx-tiny ramips-mt76x8 ramips-mt7620 ramips-mt7621 ramips-rt305x ath79-generic mpc85xx-generic"
 # mpc85xx-generic ramips-mt7620 ramips-mt76x8"
 
 # raspberry devices
